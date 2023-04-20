@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useState } from "react";
+import { useCollapse } from "react-collapsed";
+import "./App.css";
+import FormAddTask from "./FormAddTask";
+import ToDoList from "./ToDoList";
 
 function App() {
+  const [listArray, setListArray] = useState([]);
+  const { getCollapseProps, getToggleProps } = useCollapse();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <button {...getToggleProps()}>+</button>
+        <section {...getCollapseProps()}>
+          {
+            <FormAddTask
+              listArray={listArray}
+              setListArray={setListArray}
+            ></FormAddTask>
+          }
+        </section>
+      </div>
+      <div>
+        <p>{listArray.length === 0 ? null : listArray[0].newTask}</p>
+      </div>
+      <div>
+        <ToDoList></ToDoList>
+      </div>
     </div>
   );
 }
