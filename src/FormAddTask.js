@@ -8,9 +8,10 @@ function FormAddTask({ listArray, setListArray }) {
         initialValues={{
           newTask: "",
         }}
-        onSubmit={async (values) => {
+        onSubmit={async (values, { resetForm }) => {
           await new Promise((r) => setTimeout(r, 500));
           setListArray([...listArray, values]);
+          resetForm();
         }}
       >
         <Form>

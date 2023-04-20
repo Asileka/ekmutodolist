@@ -23,10 +23,7 @@ function App() {
         </section>
       </div>
       <div>
-        <p>{listArray.length === 0 ? null : listArray[0].newTask}</p>
-      </div>
-      <div>
-        <ToDoList></ToDoList>
+        <ToDoList listArray={listArray}></ToDoList>
       </div>
     </div>
   );
